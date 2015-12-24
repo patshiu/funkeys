@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script type="text/javascript">
+    	function updateKeys(){
+    		//get keysData
+
+    		var keyStates;
+    		var request = new XMLHttpRequest();
+    		request.open("GET", 'http://localhost:8080/api/v1/globalKeys', true);
+			request.onreadystatechange=function() {
+
+				//if (request.readyState == 4 && request.status == 200) {
+
+					keyStates = request.responseText;
+					console.log(keyStates);
+					document.getElementById("demo").innerHTML = keyStates;
+					renderKeys(keyStates);
+					
+				//} else {
+					//console.log("get request failed. Status code: " + request.status);
+				//}
+			};   		
+    		request.send(null);
+    	}
+
+    	setInterval( updateKeys, 500);
+
+    	function renderKeys(keyStates){
+    		for (var i = 0; i < keyStates.length; i++){
+    			var id = "" + i; 
+    			if (keyStates.charAt(i) === "1"){
+    				document.getElementById(id).className = "down";
+    				console.log("CURRENT KEY: " + i + " STATE: " + keyStates.charAt(i));
+    				playKey(i);
+    			} else {
+    				document.getElementById(id).className = "up";
+    			}		
+    		}    		
+    	}
+
+    	var aud1 = new Audio('assets/01_c3.wav'); 
+    	var aud2 = new Audio('assets/02_d3.wav'); 
+    	var aud3 = new Audio('assets/03_e3.wav'); 
+    	var aud4 = new Audio('assets/04_f3.wav'); 
+    	var aud5 = new Audio('assets/05_g3.wav'); 
+    	var aud6 = new Audio('assets/06_a3.wav'); 
+    	var aud7 = new Audio('assets/07_b3.wav'); 
+    	var aud8 = new Audio('assets/08_c4.wav'); 
+    	var aud9 = new Audio('assets/09_d4.wav'); 
+
+    	function playKey(key){
+    		switch(key) {
+    			case 0: 
+    				aud1.play();
+    				break;
+
+				case 1: 
+					aud2.play();
+					break;
+
+				case 2: 
+					aud3.play();
+					break;
+
+				case 3: 
+					aud4.play();
+					break;
+
+				case 4: 
+					aud5.play();
+					break;
+
+				case 5: 
+					aud6.play();
+					break;
+
+				case 6: 
+					aud7.play();
+					break;
+
+				case 7: 
+					aud8.play();
+					break;
+
+				case 8: 
+					aud9.play();
+					break;
+
+				default: 
+					break; 
+
+    		}
+    	}
+		
+/*		function setColor(slider, textbox) {
+			textbox.value = slider.value;
+			var request = new XMLHttpRequest();
+				// GET /output/color/level, and make an asynchronous request:
+				request.open( "GET", '/output/' + textbox.id + "/" + slider.value, true );
+				// close the request:
+				request.send( null );
+		}
+
+		function setState(id, state){
+			var s = (state ? 1 : 0); 
+			console.log("Light state change requested on Light: " + id + " State to " + s );
+			var http = new XMLHttpRequest(); 
+			var url = "http://localhost:8080/api/setLights/"
+			var params = "lightID=" + id + "&state=" + s;
+			console.log("sending these params: " + params);
+			http.open("POST", url, true);
+
+			//Send the proper header information along with the request
+			http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			// http.setRequestHeader("Content-length", params.length);
+			// http.setRequestHeader("Connection", "close");
+
+			// http.onreadystatechange = function() {//Call a function when the state changes.
+			//     if(http.readyState == 4 && http.status == 200) {
+			//         alert(http.responseText);
+			//     }
+			// }
+			http.send(params);
+		}*/
+	 </script>
+	 <link rel="stylesheet" type="text/css" href="css/style.css">
+	 <style></style>
+	 </head>
+	<body>
+
+
+	<!-- funkeys -->
+	<table class="tabulaSona">
+		<tbody>
+			<tr>
+				<td class="key" id="0"></td>
+				<td class="key" id="1"></td>
+				<td class="key" id="2"></td>
+				<td class="key" id="3"></td>
+				<td class="key" id="4"></td>
+				<td class="key" id="5"></td>
+				<td class="key" id="6"></td>
+				<td class="key" id="7"></td>
+				<td class="key" id="8"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p id="demo"></p>
+
+	</body>
+</html>

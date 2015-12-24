@@ -1,0 +1,33 @@
+.tabulaLuma {
+  margin: 20% auto;
+}
+.tabulaLuma td{
+  padding: 20px;
+}
+
+
+.tabulaSona {
+	width: 80%;
+	height: 200px;
+	margin: 20% auto;
+}
+
+.tabulaSona td{
+	height: 200px;
+	border: 1px solid black;
+	background-color: #ccc;
+}
+
+.up {
+	background-color: white !important;
+}
+
+.down {
+	background-color: red !important;
+}
+
+#demo {
+	margin: 0 auto;
+	text-align: center;
+	font-family: monospace;
+}
